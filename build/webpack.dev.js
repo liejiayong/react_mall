@@ -16,7 +16,7 @@ module.exports = {
 	mode: 'development',
     entry: [
         "webpack/hot/only-dev-server",
-        "./src/main.js"
+        "./src/index.js"
     ],
     output: {		
         path: path.resolve(__dirname, '../dist'),

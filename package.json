@@ -4,8 +4,8 @@
   "description": "integral mall",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --progress  --color --config=config/webpack.dev.js",
-    "server": "webpack-dev-server --config=config/webpack.dev.js"
+    "build": "webpack --progress  --color --config=build/webpack.dev.js",
+    "server": "webpack-dev-server --config=build/webpack.dev.js"
   },
   "repository": {
     "type": "git",
