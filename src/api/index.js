@@ -1,6 +1,4 @@
 
-import { get, post} from '../aios'
+import { request } from './axios'
 
-
-export const user = () => await get('/user/info')
-export const list = (pageNo) => await post('/xxxx/list', { pageNo: pageNo })
+export const getUser = () => request({method:'get',url:'api_v1.2.8/club/influenceRanking',data:{a:'1',b:'2'}});
