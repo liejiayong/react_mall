@@ -4,26 +4,36 @@ var HtmlwebpackPlugin = require('html-webpack-plugin'); //生成html
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包
 var PurifyCSS = require("purifycss-webpack"); //消除未使用的CSS
 var cleanWebpackPlugin = require("clean-webpack-plugin");  // 清除目录等
+
 let spritesConfig = {
     spritePath: "../dist/img"
 };
+
 //理静态文件路径
 var website ={
     spritePath: "../dist/",
     publicPath:"" //这里配置输出js的路径
 }
+/*
+const purifyCssWebpack = require("purifycss-webpack"); //消除冗余的css
+*/
 module.exports = {
+	//新增了mode/--mode参数来表示是开发还是生产，mode有两个可选值：development和production，production不支持监听，production侧重于打包后的文件大小，development侧重于构建的速度。
 	mode: 'development',
+	//入口文件
     entry: [
         "webpack/hot/only-dev-server",
-        "./src/index.js"
+        "./src/main.js"
     ],
+	//出口文件配置项
     output: {		
-        path: path.resolve(__dirname, '../dist'),
+        path: path.resolve(__dirname, '../dist'), // 打包文件的输出目录
         filename: "js/[name].js",
-        publicPath:website.publicPath,
+        publicPath:website.publicPath,  //publicPath：主要作用就是处理静态文件路径的。
 		chunkFilename: "js/[name].chunk.js"
     },
+	
+	//webpack4开始官方移除了commonchunk插件，改用了optimization属性进行更加灵活的配置   对压缩(optimization.minimize)的设置，默认在production时开启，在development时关闭。
 	optimization:{
 		splitChunks:{
 			cacheGroups: {
@@ -46,6 +56,8 @@ module.exports = {
 			}
 		}
 	},
+
+	//模块：解读css，图片如何转换，压缩等
     module: {
 		rules:[
             {
@@ -78,15 +90,19 @@ module.exports = {
                         }
                     ]
                 })
+				// use:[
+				// 	{loader: "style-loader"},
+				// 	{loader: "css-loader",options: {minimize: true}}
+				// ]
 			},{
                 test:/\.(png|jpg|gif|jpeg)$/,
                 use:[
                     {
-                        loader:'url-loader',
+                        loader:'url-loader', //是指定使用的loader和loader的配置参数
                         options:{
-                            limit:500,
+                            limit:500,  //是把小于500B的文件打成Base64的格式，写入JS
                             name: '[hash].[ext]',
-                            outputPath:'images/',
+                            outputPath:'images/', //输出图片路径
                         }
                     }
                 ]
@@ -97,7 +113,7 @@ module.exports = {
                         loader: "url-loader",
                         options: {
                             name: "[name]-[hash:5].min.[ext]",
-                            limit: 5000,
+                            limit: 5000, // fonts file size <= 5KB, use 'base64'; else, output svg file
                             publicPath: "fonts/",
                             outputPath: "fonts/"
                         }
@@ -130,7 +146,21 @@ module.exports = {
             filename: "[name].min.css",  //这里可以在前面加文件名，但会影响到图片的路径
             allChunks: false
         }),
-        		
+        
+		
+		//new copyWebpackPlugin([{
+        //    from: path.resolve(__dirname,"src/assets"),
+        //    to: './pulic'
+        //}]),
+        
+        
+		
+		// 消除冗余的css代码
+		//new purifyCssWebpack({            
+        //    paths: glob.sync(path.join(__dirname, "src/*.html")) // glob为扫描模块，使用其同步方法
+        //}),		
+		
+		
 		// 自动生成html模板
         new HtmlwebpackPlugin({
 			//favicon:'./src/img/favicon.ico', //favicon路径
@@ -145,7 +175,8 @@ module.exports = {
 				removeComments:true,	//移除HTML中的注释
 				//collapseWhitespace:true	//删除空白符与换行符
 			}
-        }),        
+        }),
+        
         //消除未使用的css
         // new PurifyCSS({
         //     paths: glob.sync([
@@ -156,6 +187,20 @@ module.exports = {
         // })
 	],
     //devtool: "source-map",  // 开启调试模式
+    
+    //配置第三方JS库，配置之后, 在项目的文件中不再需要import或者require相关的库!!! 
+    // resolve: {
+	// 	modulesDirectories: ['src', 'node_modules'],
+	// 	alias: {
+	// 		'jWeixin': path.resolve(__dirname, './src/utils/weixin/jweixin-1.0.0.js'),
+	// 	},
+	// 	extensions: ['', '.web.tsx', '.web.ts', '.web.jsx', '.web.js', '.ts', '.tsx', '.js', '.jsx', '.json']
+    // },
+
+    // 全局暴露统一入口
+    //new webpack.ProvidePlugin({
+    //    jwx: "jWeixin"
+    //}),
     
 	//配置webpack开发服务功能
 	devServer:{

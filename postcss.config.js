@@ -1,10 +1,7 @@
-/**
- * Created by EX_WLJR_CHENYULUN on 2017/5/18.
- */
 module.exports = {
-	// parser: 'sugarss',
-	// exec: true,
-	plugins: {
-		'autoprefixer': {}
-	}
-};
+    plugins:[
+        require('autoprefixer') // 自动添加css前缀
+    ]
+}
+
+// postcss-loader autoprefixer

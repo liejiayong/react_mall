@@ -1,22 +1,24 @@
 import React from 'react';
-import { render } from 'react-dom';
-import {Router, Route, IndexRoute, browserHistory, hashHistory} from 'react-router';
+import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import './style/app.less';
+import { ConnectedRouter } from 'react-router-redux';
+import { BrowserRouter , HashRouter, Route} from 'react-router-dom';
+// HashRouter URL上会带#号 打包本地用这个查看
+//<BrowserRouter> 使用 HTML5 提供的 history API (pushState, replaceState 和 popstate 事件) 来保持 UI 和 URL 的同步。
+import './style/index.css';
+import './style/index.less';
 
 import store from './store/index';
-import routes from './router/index';  //路由
+import Root from './router/index';
 
-/*
-    react-redux 提供 Provider 组件; (被 Provider 组件包裹的整个APP中的每个组件，都可以通过 connect 去连接 store)
-    主要功能:
-    1：在原应用组件上包裹一层，使原来整个应用成为Provider的子组件；
-    2：接收Redux的store作为props，通过context对象传递给子孙组件上的connect；
-*/
-render(
-	<Provider store={store} key="provider">
-		<Router history={hashHistory} routes={routes}/>  
-	</Provider>,
+//console.log(BrowserRouter);
+
+
+ReactDOM.render(
+	<Provider store={store}>
+		<BrowserRouter>
+			<Root />
+		</BrowserRouter>
+	</Provider>, 
 	document.getElementById('app')
-)
-
+);
