@@ -39,10 +39,11 @@ module.exports = merge(webpackBaseConfig, {
         progress: true,
         // 开启浏览器
         open: true, 
-        // 开启热更新
+        // 开启热更新必须有webpack.HotModuleReplacementPlugin
         hot: true,
         // 在页面上全屏输出报错信息
         overlay: true,
+        //lazy: true, //当启用 lazy 时，dev-server 只有在请求时才编译包(bundle)。这意味着 webpack 不会监视任何文件改动。我们称之为惰性模式。
         //服务端压缩是否开启
         compress:true,
         //配置服务端口号
@@ -54,7 +55,7 @@ module.exports = merge(webpackBaseConfig, {
         //         secure: false,
         //     }
         // },
-        //所有的路径都执行index.html
+        //所有的路径都执行index.html不跳转
         historyApiFallback : true,
         watchOptions: {
             ignored: /node_modules/, //忽略不用监听变更的目录
