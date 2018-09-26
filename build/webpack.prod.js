@@ -48,7 +48,7 @@ module.exports = merge(webpackBaseConfig, {
         }),
         //实现 chunkhash 的稳定化。https://sebastianblade.com/using-webpack-to-achieve-long-term-cache/#hash
         new webpack.HashedModuleIdsPlugin(),
-
+        new webpack.BannerPlugin("Copyright by zyl")
     ],
     //优化部分包括代码拆分,且运行时（manifest）的代码拆分提取为了独立的 runtimeChunk 配置 
     optimization:{

@@ -5,9 +5,9 @@ const qs = require('qs');
 const history = createHashHistory();
 const CancelToken = axios.CancelToken;
 let cancel;
+//console.log(process.env.NODE_ENV);
 
-//let baseURL = 'http://ads.tanwan.com';
-let baseURL = 'http://appfindtest.tanwan.com/';
+let baseURL = '#';
 
 axios.defaults.timeout = 10000
 axios.defaults.baseURL = baseURL
@@ -69,3 +69,24 @@ export const request = (obj) =>{
     })
 }
 
+export const requestAll = (arr) =>{
+    var aRequest = [];
+    for (var i of arr) {
+        var data = jointRequestData(i.data);
+        aRequest.push(axios({method: i.method,url: i.url,data: qs.stringify(data, {allowDots: true})}));
+    }
+    return axios.all(aRequest).then(axios.spread(function (){
+        var rall = []
+        for (var i of arguments) {
+            rall.push(i)
+        }
+        return rall
+    }))
+}
+
+/*
+requestAll([{method:'get',url:'api/1',data:{id:'a'}}, {method:'get',url:'api/1',data:{id:'b'}}]).then((res) => {
+    console.log('请求1', res[0])
+    console.log('请求2', res[1])
+});
+*/
