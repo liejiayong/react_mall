@@ -7,7 +7,7 @@ const CancelToken = axios.CancelToken;
 let cancel;
 //console.log(process.env.NODE_ENV);
 
-let baseURL = '#';
+let baseURL = 'http://hd.tanwan.com/api/twapp/';
 
 axios.defaults.timeout = 10000
 axios.defaults.baseURL = baseURL

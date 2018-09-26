@@ -38,7 +38,7 @@ module.exports = merge(webpackBaseConfig, {
         // 显示 webpack 构建进度
         progress: true,
         // 开启浏览器
-        open: true, 
+        open: false, 
         // 开启热更新必须有webpack.HotModuleReplacementPlugin
         hot: true,
         // 在页面上全屏输出报错信息

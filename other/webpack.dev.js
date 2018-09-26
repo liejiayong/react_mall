@@ -209,7 +209,7 @@ module.exports = {
 		//服务器的IP地址，可以使用IP也可以使用localhost
 		//host:'location',
 		// 开启浏览器
-		open: true, 
+		open: false, 
 		// 开启热更新
 		hot: true,
 		overlay: true,
