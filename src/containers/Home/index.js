@@ -5,6 +5,7 @@ import { TabBar } from 'antd-mobile'
 import { getShopList } from '../../api/index'
 import Navigation from '../../components/Navigation/index'
 import IntegralTabBar from './TabBar/index'
+import './index.less'
 
 class Home extends Component {
   constructor(props) {
@@ -40,11 +41,15 @@ class Home extends Component {
     return (
       <div className="integralindex">
         <Navigation title={'积分商城'} />
-
+        <div className="integral-container">
+          <div className="integral-content">
+            {this.props.children}
+          </div>
+        </div>
         <IntegralTabBar handleSelectTabs={this.handleSelectTab} />
       </div>
     )
   }
 }
 
-export default connect()(Home)
+export default Home

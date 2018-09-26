@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { tabConfig } from '../../../utils/config'
 import './index.less'
 
@@ -19,14 +20,15 @@ class IntegralTabBar extends Component {
         selectedTab: type
     })
 
-    this.props.handleSelectTabs(type)
+    // this.props.handleSelectTabs(type)
   }
 
   render() {
     return (
       <div className="integraltabbar">
         <div className="tabbar">
-          <div
+          <Link
+            to="game-gift"
             onClick={this.handleSelectTab}
             data-type={this.state.tabConfig[0]}
             className={`tabitem ${
@@ -34,16 +36,17 @@ class IntegralTabBar extends Component {
             }`}
             >
             游戏礼包
-          </div>
-          <div
+          </Link>
+          <Link
+            to="/user"
             onClick={this.handleSelectTab}
             data-type={this.state.tabConfig[1]}
             className={`tabitem ${
-              this.state.selectedTab === tabConfig[1] ? 'active' : ''
+                this.state.selectedTab === tabConfig[1] ? 'active' : ''
             }`}
           >
-            我的礼包
-          </div>
+          我的礼包
+          </Link>
         </div>
       </div>
     )
