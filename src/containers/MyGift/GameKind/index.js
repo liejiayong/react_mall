@@ -9,11 +9,7 @@ class GameKind extends Component {
     console.log('=== GameKind ===')
   }
   render() {
-    const { img, name }  = this.props.value
-    return <Flex.Item className="gamekind">
-      <img src={img} className="icon-kind" />
-      <p className="name">{name}</p>
-    </Flex.Item>
+    return <Flex.Item>xxx</Flex.Item>
   }
 }
 

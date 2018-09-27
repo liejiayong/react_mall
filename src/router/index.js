@@ -7,15 +7,13 @@ import { hot } from 'react-hot-loader';
 
 import Home from '../containers/Home/index';
 import GameGift from '../containers/GameGift/index';
-import User from '../containers/User/index';
-
+import MyGift from '../containers/MyGift/index';
 
 const Root = () => (
 	<Home>
 		<Switch>
 			<Route exact path="/game-gift" component= {GameGift} ></Route>
-			<Route exact path="/user" component= {User} />
-			<Redirect to="/game-gift" />
+			<Route exact path="/my-gift" component= {MyGift} />
 		</Switch>
 	</Home>
 );

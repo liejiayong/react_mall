@@ -8,4 +8,5 @@
     font-weight: bold;
     color: #333;
     z-index: 10000;
+    border-bottom: 1px solid #F2F2F2;
 }

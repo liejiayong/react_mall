@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TabBar } from 'antd-mobile'
-import { getShopList } from '../../api/index'
 import Navigation from '../../components/Navigation/index'
 import IntegralTabBar from './TabBar/index'
 import './index.less'
@@ -16,9 +15,6 @@ class Home extends Component {
     this.handleSelectTab = this.handleSelectTab.bind(this)
   }
   componentWillMount() {
-   getShopList().then((res) => {
-         console.log(res, '--------')
-   })
   }
   componentDidMount() {
     console.log('componentDidMount')

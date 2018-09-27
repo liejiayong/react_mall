@@ -38,7 +38,7 @@ class IntegralTabBar extends Component {
             游戏礼包
           </Link>
           <Link
-            to="/user"
+            to="/my-gift"
             onClick={this.handleSelectTab}
             data-type={this.state.tabConfig[1]}
             className={`tabitem ${

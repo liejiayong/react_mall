@@ -11,26 +11,25 @@ let baseURL = 'http://hd.tanwan.com/api/twapp/';
 
 axios.defaults.timeout = 10000
 axios.defaults.baseURL = baseURL
-axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.headers.post['Content-Type'] = 'application/json'
-axios.defaults.headers.post['Cache-Control'] = 'no-cache'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+// axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
+// axios.defaults.headers.post['Cache-Control'] = 'no-cache'
 //responseType: "json",
 //axios.defaults.withCredentials = true //配置允许跨域携带cookie
 
 axios.interceptors.request.use(config => {
-    console.log( '加载中。。。');
-    console.log(history)
-    console.log(config)
+    // console.log( '加载中。。。');
+    // console.log(history)
+    // console.log(config)
 	return config
 }, err => {
-    console.log('加载超时')
+    // console.log('加载超时')
 	return Promise.reject(err)
 });
 
 axios.interceptors.response.use(response =>{
-    console.log('加载结束')
-    console.log(response)
+    // console.log('加载结束')
     //history.push('/user')
 	return response
 }, err => {
@@ -52,7 +51,7 @@ const jointData = function (data) {
 
 export const request = (obj) =>{
     var data = jointData(obj.data); 
-    return new Promise((resolve, reject) => {        
+    return new Promise((resolve, reject) => {
         axios({
             method: obj.method,
             url: obj.url,
