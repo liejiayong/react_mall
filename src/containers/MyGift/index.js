@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Tabs } from 'antd-mobile'
+import PanelBody from './PanelBody/index'
+import PanelBodylose from './PanelBodylose/index'
 import { getMyList } from '../../api/index'
+import './styl.less'
 
 class MyGift extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      tabs: [{ title: '已兑积分' }, { title: '失效礼包' }],
       res: {
         code: 0,
         msg: '请求成功',
@@ -60,7 +65,20 @@ class MyGift extends Component {
     console.log(e)
   }
   render() {
-    return <div>xxxqqq</div>
+    const { list, expired } = this.state.res
+    if (!list.length) return null
+    return (
+      <div className="mygift">
+        <Tabs
+          tabs={this.state.tabs}
+          tabBarActiveTextColor="#333333"
+          tabBarInactiveTextColor="#999999"
+        >
+          <PanelBody list={list} />
+          <PanelBodylose list={expired} />
+        </Tabs>
+      </div>
+    )
   }
 }
 
