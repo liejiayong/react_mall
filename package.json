@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/275957304/react_mall#readme",
   "devDependencies": {
+    "jsonp": "0.2.1",
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",

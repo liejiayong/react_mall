@@ -52,6 +52,7 @@ module.exports = merge(webpackBaseConfig, {
         proxy: {
             "/twapi": {
                 target:"http://hd.tanwan.com",
+                host: 'tanwan.com',
                 secure: false,
                 changeOrigin: true,
                 pathRewrite: {
@@ -60,8 +61,24 @@ module.exports = merge(webpackBaseConfig, {
                 headers: {
                   referer: 'http://hd.tanwan.com',
                   host: 'hd.tanwan.com'
+                },
+                router: {
+                    'localhost:8000': 'http://hd.tanwan.com'
                 }
             }
+            // "/twapi": {
+            //     target:"http://hd.tanwan.com",
+            //     host: 'tanwan.com',
+            //     secure: false,
+            //     changeOrigin: true,
+            //     pathRewrite: {
+            //         '/twapi':'/api/twapp'
+            //     },
+            //     headers: {
+            //       referer: 'http://hd.tanwan.com',
+            //       host: 'hd.tanwan.com'
+            //     }
+            // }
         },
         //所有的路径都执行index.html不跳转
         historyApiFallback : true,

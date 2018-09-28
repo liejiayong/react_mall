@@ -14,11 +14,17 @@ axios.defaults.timeout = 10000
 axios.defaults.baseURL = baseURL
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-// axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
+axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
 // axios.defaults.headers.post['Cache-Control'] = 'no-cache'
 axios.defaults.withCredentials = true //配置允许跨域携带cookie
 //responseType: "json",
-
+axios.defaults.transformRequest = [function (data) {
+    let newData = ''
+    for (let k in data) {
+        newData += encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) + '&'
+    }
+    return newData
+}]
 axios.interceptors.request.use(config => {
     // console.log( '加载中。。。');
     // console.log(history)
@@ -59,7 +65,7 @@ export const request = (obj) =>{
         axios({
             method: obj.method,
             url: obj.url,
-            data: qs.stringify(data, {allowDots: true}),
+            data: qs.stringify(data, {allowDots: true, withCredentials:true}),
             withCredentials: true,
             cancelToken: new CancelToken(c => {
                 cancel = c

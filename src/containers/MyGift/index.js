@@ -47,7 +47,7 @@ class MyGift extends Component {
     })
   }
   componentDidMount() {
-    console.log('=== MyGift ===')
+    console.log('=== MyGift ===', )
     console.log(this.props)
     
   }
