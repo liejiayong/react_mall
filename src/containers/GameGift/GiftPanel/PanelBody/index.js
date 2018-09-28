@@ -4,9 +4,18 @@ import './styl.less'
 class PanelBody extends Component {
   constructor(props) {
     super(props)
+    this.handleBuyShop = this.handleBuyShop.bind(this)
   }
   componentWillMount() {
     console.log('=== PanelBody ===', this.props.list)
+  }
+  componentDidMount() {
+    console.log('=== PanelBody ===', this.props.list)
+    const a = $('.panelbody')
+    console.log()
+  }
+  handleBuyShop(e) {
+    console.log(e)
   }
   render() {
     const { list } = this.props
@@ -16,7 +25,7 @@ class PanelBody extends Component {
         {list.map(v => {
           const { img, id, integral, name, game, start, end } = v
           return (
-            <div className="panelbody" key={id}>
+            <div id={`panel-${id}`} className="panelbody" key={id}>
               <img src={img} alt="" className="avatar" />
               <div className="content">
                 <div className="title">{game}({name})</div>
@@ -29,7 +38,7 @@ class PanelBody extends Component {
                   {start}-{end}
                 </div>
               </div>
-              <a data-id={id} href="javascript:;" className="btn-recharge">
+              <a onClick={this.handleBuyShop} data-id={id} href="javascript:;" className="btn-recharge">
                 积分兑换
               </a>
             </div>

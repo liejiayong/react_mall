@@ -47,9 +47,9 @@ class MyGift extends Component {
     })
   }
   componentDidMount() {
-    console.log('componentDidMount')
+    console.log('=== MyGift ===')
     console.log(this.props)
-    pop_lr.login()
+    
   }
   handleClick() {
     //这里请求数据

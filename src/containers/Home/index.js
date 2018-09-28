@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TabBar } from 'antd-mobile'
-import Navigation from '../../components/Navigation/index'
 import IntegralTabBar from './TabBar/index'
 import './index.less'
 
@@ -36,7 +35,6 @@ class Home extends Component {
   render() {
     return (
       <div className="integralindex">
-        <Navigation title={'积分商城'} />
         <div className="integral-container">
           <div className="integral-content">
             {this.props.children}

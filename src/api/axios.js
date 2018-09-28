@@ -7,7 +7,8 @@ const CancelToken = axios.CancelToken;
 let cancel;
 //console.log(process.env.NODE_ENV);
 
-let baseURL = 'http://hd.tanwan.com/api/twapp/';
+// let baseURL = 'http://hd.tanwan.com/api/twapp/';
+let baseURL = '/twapi';
 
 axios.defaults.timeout = 10000
 axios.defaults.baseURL = baseURL
@@ -15,8 +16,8 @@ axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 // axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
 // axios.defaults.headers.post['Cache-Control'] = 'no-cache'
+axios.defaults.withCredentials = true //配置允许跨域携带cookie
 //responseType: "json",
-//axios.defaults.withCredentials = true //配置允许跨域携带cookie
 
 axios.interceptors.request.use(config => {
     // console.log( '加载中。。。');
@@ -29,14 +30,17 @@ axios.interceptors.request.use(config => {
 });
 
 axios.interceptors.response.use(response =>{
-    // console.log('加载结束')
+    if (response.data.code == 2) {
+        pop_lr.login()
+    }
+    console.log('加载结束', response)
     //history.push('/user')
 	return response
 }, err => {
 	// if (err.response) {
 	// 	console.log(err.response);
     // }
-    console.log('网络不给力呀！请稍候再试')
+    console.log('网络不给力呀！请稍候再试', err)
 	return Promise.reject(err.response)
 });
 
@@ -56,6 +60,7 @@ export const request = (obj) =>{
             method: obj.method,
             url: obj.url,
             data: qs.stringify(data, {allowDots: true}),
+            withCredentials: true,
             cancelToken: new CancelToken(c => {
                 cancel = c
             })
