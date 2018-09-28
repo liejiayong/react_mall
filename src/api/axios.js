@@ -37,7 +37,7 @@ axios.interceptors.request.use(config => {
 
 axios.interceptors.response.use(response =>{
     if (response.data.code == 2) {
-        pop_lr.login()
+        // pop_lr.login()
     }
     console.log('加载结束', response)
     //history.push('/user')

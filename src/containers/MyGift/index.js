@@ -48,8 +48,6 @@ class MyGift extends Component {
   }
   componentDidMount() {
     console.log('=== MyGift ===', )
-    console.log(this.props)
-    
   }
   handleClick() {
     //这里请求数据
@@ -70,6 +68,7 @@ class MyGift extends Component {
     return (
       <div className="mygift">
         <Tabs
+          initialPage={this.state.initialPage}
           tabs={this.state.tabs}
           tabBarActiveTextColor="#333333"
           tabBarInactiveTextColor="#999999"

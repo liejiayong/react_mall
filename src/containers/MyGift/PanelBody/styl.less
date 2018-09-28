@@ -11,22 +11,23 @@
   -ms-flex-pack: justify;
   justify-content: space-between;
   justify-items: center;
-  padding: 7px 20px;
+  padding: .14rem .4rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #fff;
   &::before {
+    @width: .4rem;
     content: '';
     display: block;
     position: absolute;
-    left: 20px;
-    right: 20px;
+    left: @width;
+    right: @width;
     bottom: 0;
     border-bottom: 1px solid #f7f8f9;
   }
   .avatar {
-    @width: 60px;
+    @width: 1.2rem;
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 @width;
     -moz-box-flex: 0;
@@ -42,7 +43,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    padding: 0 15px;
+    padding: 0 .3rem;
     -webkit-box-flex: 1;
     -webkit-flex: 1;
     -moz-box-flex: 1;
@@ -54,7 +55,7 @@
     overflow: hidden;
     .title{
       width: 100%;
-      font-size: 15px;
+      font-size: .3rem;
       font-weight: bold;
       color: #1A1A1A;
     }
@@ -65,21 +66,22 @@
     }
   }
   .btn-recharge {
+    @height: .54rem;
     position: absolute;
     top: 50%;
-    right: 20px;
+    right: .4rem;
     -webkit-transform: translateY(-50%);
        -moz-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
          -o-transform: translateY(-50%);
             transform: translateY(-50%);
-    padding: 0 10px;
-    height: 27px;
-    line-height: 27px;
+    padding: 0 .2rem;
+    height: @height;
+    line-height: @height;
     text-align: center;
-    -moz-border-radius: 27px;
-    border-radius: 27px;
-    font-size: 12px;
+    -moz-border-radius: @height;
+    border-radius: @height;
+    font-size: .24rem;
     color: #333;
     background-color: #ffd100;
     cursor: pointer;

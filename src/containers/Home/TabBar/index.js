@@ -13,7 +13,14 @@ class IntegralTabBar extends Component {
     }
     this.handleSelectTab = this.handleSelectTab.bind(this)
   }
-
+  componentDidMount() {
+    const pathname = this.getParam('pathname')
+    const selectedTab = pathname.match(/\w+\-\w+/)[0]
+    this.setState({selectedTab})
+  }
+  getParam(key) {
+    return window.location[key]
+  }
   handleSelectTab(e) {
     const type = e.target.getAttribute('data-type')
     this.setState({
