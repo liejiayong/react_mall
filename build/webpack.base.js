@@ -21,13 +21,13 @@ module.exports = {
                 use: [
                     {loader: MiniCssExtractPlugin.loader, options: {publicPath: '../'}},
                     //{loader: 'style-loader'},
-                    {loader: 'css-loader',options: {}},                    
-                    {loader: 'less-loader',options: {}},
+                    {loader: 'css-loader',options: {}},                  
                     {loader: 'postcss-loader',options: {
                         // plugins: [
                         //     require("autoprefixer") /*在这里添加*/
                         // ]
-                    }}
+                    }},
+                    {loader: 'less-loader',options: {}}
                 ]
             }
         ]

@@ -7,21 +7,30 @@ const CancelToken = axios.CancelToken;
 let cancel;
 //console.log(process.env.NODE_ENV);
 
-let baseURL = '#';
+let baseURL = '/twapi';
 
 axios.defaults.timeout = 10000
 axios.defaults.baseURL = baseURL
-axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.headers.post['Content-Type'] = 'application/json'
-axios.defaults.headers.post['Cache-Control'] = 'no-cache'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+// axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
+// axios.defaults.headers.post['Cache-Control'] = 'no-cache'
+axios.defaults.withCredentials = true //配置允许跨域携带cookie
 //responseType: "json",
 //axios.defaults.withCredentials = true //配置允许跨域携带cookie
 
+axios.defaults.transformRequest = [function (data) {
+    let newData = ''
+    for (let k in data) {
+        newData += encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) + '&'
+    }
+    return newData
+}]
+
 axios.interceptors.request.use(config => {
     console.log( '加载中。。。');
-    console.log(history)
-    console.log(config)
+    //console.log(history)
+    //console.log(config)
 	return config
 }, err => {
     console.log('加载超时')
@@ -29,15 +38,15 @@ axios.interceptors.request.use(config => {
 });
 
 axios.interceptors.response.use(response =>{
-    console.log('加载结束')
-    console.log(response)
+    //console.log('加载结束')
+    //console.log(response)
     //history.push('/user')
 	return response
 }, err => {
 	// if (err.response) {
 	// 	console.log(err.response);
     // }
-    console.log('网络不给力呀！请稍候再试')
+    //console.log('网络不给力呀！请稍候再试')
 	return Promise.reject(err.response)
 });
 
@@ -61,7 +70,7 @@ export const request = (obj) =>{
                 cancel = c
             })
         }).then(res => {
-            resolve(res)
+            resolve(res.data)
         })
         .catch(err => {
             reject(err)
