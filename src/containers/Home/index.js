@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { Button } from 'antd-mobile';
 
-import { getShopList} from '../../api/index'
+
+import { getMyList} from '../../api/index'
 
 
 class Home extends Component {
@@ -16,7 +17,7 @@ class Home extends Component {
    }
    componentDidMount(){
                 
-        getShopList().then(res => {
+    getMyList().then(res => {
             console.log('商品列表');
             console.log(res)  
 

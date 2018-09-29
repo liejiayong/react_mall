@@ -47,22 +47,22 @@ module.exports = merge(webpackBaseConfig, {
         //服务端压缩是否开启
         compress:true,
         //配置服务端口号
-        port:8000,
+        port:80,
         //接口代理配置
-        proxy: {
-            "/twapi": {
-                target:"http://hd.tanwan.com",
-                secure: false,
-                changeOrigin: true,
-                pathRewrite: {
-                    '/twapi':'/api/twapp/'
-                },
-                headers: {
-                  referer: 'http://hd.tanwan.com',
-                  host: 'hd.tanwan.com'
-                }
-            }
-        },
+        // proxy: {
+        //     "/twapi": {
+        //         target:"http://hd.tanwan.com",
+        //         secure: false,
+        //         changeOrigin: true,
+        //         pathRewrite: {
+        //             '/twapi':'/api/twapp/'
+        //         },
+        //         headers: {
+        //           referer: 'localhost',
+        //           host: 'localhost'
+        //         }
+        //     }
+        // },
         //所有的路径都执行index.html不跳转
         historyApiFallback : true,
         watchOptions: {

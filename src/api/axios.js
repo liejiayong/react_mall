@@ -7,17 +7,18 @@ const CancelToken = axios.CancelToken;
 let cancel;
 //console.log(process.env.NODE_ENV);
 
-let baseURL = '/twapi';
+let baseURL = 'http://hd.tanwan.com/api/twapp/';
+//let baseURL = '/twapi';
 
 axios.defaults.timeout = 10000
 axios.defaults.baseURL = baseURL
-axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-// axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
+axios.defaults.headers.post['Content-Type'] = 'application/json'
+//axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
 // axios.defaults.headers.post['Cache-Control'] = 'no-cache'
-axios.defaults.withCredentials = true //配置允许跨域携带cookie
+axios.defaults.withCredentials = true //配置允许跨域携带cookie 后端不能配制Access-Control-Allow-Origin:*
 //responseType: "json",
-//axios.defaults.withCredentials = true //配置允许跨域携带cookie
+
 
 axios.defaults.transformRequest = [function (data) {
     let newData = ''
@@ -69,10 +70,10 @@ export const request = (obj) =>{
             cancelToken: new CancelToken(c => {
                 cancel = c
             })
-        }).then(res => {
+        }).then(res => {            
             resolve(res.data)
         })
-        .catch(err => {
+        .catch(err => {            
             reject(err)
         });
     })
