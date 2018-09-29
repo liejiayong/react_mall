@@ -16,9 +16,19 @@ class MyGift extends Component {
         msg: '请求成功',
         list: [
           {
-            id: '1',
+            id: '2',
             type: '1',
             ext1: 'dFf4JmyaKN7',
+            logtime: '09-25',
+            name: '中秋大礼包',
+            img: 'http://upload.tanwan.com/upload/201809/5ba3445ca6726.png',
+            start: '2018-09-01',
+            end: '2018-09-30'
+          },
+          {
+            id: '1',
+            type: '1',
+            ext1: 'abdccccc',
             logtime: '09-25',
             name: '中秋大礼包',
             img: 'http://upload.tanwan.com/upload/201809/5ba3445ca6726.png',

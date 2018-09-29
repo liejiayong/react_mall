@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import alert from '@src/containers/GameGift/AlertBuy/index'
 import './styl.less'
 
 class PanelBody extends Component {
@@ -7,28 +8,32 @@ class PanelBody extends Component {
     this.handleBuyShop = this.handleBuyShop.bind(this)
   }
   componentWillMount() {
-    console.log('=== PanelBody ===', this.props.list)
+    console.log('=== PanelBody ===')
   }
   componentDidMount() {
-    console.log('=== PanelBody ===', this.props.list)
-    const a = $('.panelbody')
-    console.log()
   }
   handleBuyShop(e) {
-    console.log(e)
+    const tar = e.target
+    const id = tar.getAttribute('data-id')
+    const integral = tar.getAttribute('data-integral')
+    const name = tar.getAttribute('data-name')
+
+    alert({ id, name, integral})
   }
   render() {
     const { list } = this.props
     if (!list.length) return null
     return (
-      <>
+      <div className="panellist">
         {list.map(v => {
           const { img, id, integral, name, game, start, end } = v
           return (
             <div id={`panel-${id}`} className="panelbody" key={id}>
               <img src={img} alt="" className="avatar" />
               <div className="content">
-                <div className="title">{game}({name})</div>
+                <div className="title">
+                  {game}({name})
+                </div>
                 <div className="integral">
                   所需积分：
                   {integral}
@@ -38,13 +43,13 @@ class PanelBody extends Component {
                   {start}-{end}
                 </div>
               </div>
-              <a onClick={this.handleBuyShop} data-id={id} href="javascript:;" className="btn-recharge">
+              <a onClick={this.handleBuyShop} data-id={id} data-name={`${game}(${name})`} data-integral={integral} href="javascript:;" className="btn-recharge">
                 积分兑换
               </a>
             </div>
           )
         })}
-      </>
+      </div>
     )
   }
 }

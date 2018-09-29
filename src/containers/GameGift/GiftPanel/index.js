@@ -8,7 +8,11 @@ class GiftPanel extends Component {
     super(props)
   }
   componentWillMount() {
-    console.log('=== GiftPanel ===', this.props.list)
+    console.log('=== GiftPanel ===')
+  }
+  componentDidMount() {
+    const a = $('.giftpanel')
+    console.log('aaaaaaaaaaaaaaaaaaaa', a)
   }
   render() {
     const { list } = this.props

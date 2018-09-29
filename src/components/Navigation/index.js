@@ -10,7 +10,7 @@ class Navigation extends Component {
   componentWillUnmount() {}
   render() {
     return (
-      <NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => this.props.history.pop()} className="jy-navigation">
+      <NavBar mode="light" icon={<Icon type="left" />} onLeftClick={() => history.pop()} className="jy-navigation">
         {this.props.title}
       </NavBar>
     )

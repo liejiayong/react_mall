@@ -1,0 +1,91 @@
+// modal
+.buysuctit {
+  font-size: 0.38rem;
+  font-family: PingFang-SC-Bold;
+  font-weight: bold;
+  color: rgba(26, 26, 26, 1);
+}
+.buysucBody {
+  padding-top: 0.5rem;
+  font-size: 0.28rem;
+  color: #333;
+  .buysucintegral {
+    color: #f0af49;
+  }
+  .buysucperiod {
+    margin-top: 0.3rem;
+    font-size: 0.2rem;
+    color: #999999;
+  }
+}
+.am-modal-transparent .am-modal-content {
+  padding: 0.7rem 0 0.6rem;
+}
+.am-modal-header {
+  padding: 0;
+}
+.am-modal-transparent .am-modal-content .am-modal-body {
+  padding: 0 15px 0;
+}
+.am-modal-footer {
+  margin-top: 0.4rem;
+}
+.am-modal-button-group-v {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-pack: space-evenly;
+  -webkit-justify-content: space-evenly;
+  -moz-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+}
+.am-modal-button-group-v .am-modal-button {
+  @width: 4.5rem;
+  @height: 0.8rem;
+  -webkit-touch-callout: none;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 @width;
+     -moz-box-flex: 0;
+      -ms-flex: 0 0 @width;
+          flex: 0 0 @width;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: @width;
+  height: @height;
+  line-height: @height;
+  -moz-border-radius: @height;
+       border-radius: @height;
+  font-size: 0.26rem;
+  background-color: #FFD100;
+  color: #333;
+}
+.am-modal-button-group-h .am-modal-button:first-child {
+  color: unset;
+  background-color: #ffd100;
+}
+html:not([data-scale]) .am-modal-button-group-h::before {
+  display: none;
+  height: 0;
+}
+
+// toast
+.am-toast > span {
+  max-width: 80%;
+}
+.am-toast-notice-content .am-toast-text{
+  min-width: 115px;
+  -moz-border-radius: 36px;
+       border-radius: 36px;
+  color: #fff;
+  background-color: rgba(58, 58, 58, 0.9);
+  line-height: 1.5;
+  padding: 10px 26px;
+}

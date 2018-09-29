@@ -11,13 +11,15 @@ class GameKinds extends Component {
     console.log('=== GameKinds ===')
   }
   componentDidMount() {}
-  handleSelectTab() {}
+  handleSelectTab(e) {
+    console.log('handleSelectKind', e)
+  }
   render() {
     // if (this.props.list.length) return null
     return (
       <Flex justify="around" className="gamekinds">
         {this.props.list.map(v => {
-          return <GameKind value={v} key={v.id} />
+          return <GameKind onClick={this.handleSelectTab} data-kind={v} value={v} key={v.id} />
         })}
       </Flex>
     )

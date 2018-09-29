@@ -10,8 +10,10 @@ class GameGift extends Component {
     super(props)
     this.state = {
       category: null, // 分类
-      giftList: null // 礼包列表
+      giftList: null, // 礼包列表
+      curCategory: ''
     }
+    this.handleSelectKind = this.handleSelectKind.bind(this)
   }
   componentWillMount() {
     getShopList().then(res => {
@@ -60,7 +62,8 @@ class GameGift extends Component {
   componentDidMount() {
     console.log('componentDidMount', this.props)
   }
-  handleClick() {
+  handleSelectKind(e) {
+    console.log(e)
   }
   // 选择菜单
   handleSelectTab(e) {
@@ -82,7 +85,7 @@ class GameGift extends Component {
     if (!this.state.category) return null
     return (
       <div className="gamegift">
-        <GameKinds list={this.state.category} />
+        <GameKinds handleSelectKind={this.handleSelectKind} list={this.state.category} />
         <GiftPanel list={this.state.giftList}></GiftPanel>
       </div>
     )

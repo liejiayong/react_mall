@@ -14,6 +14,7 @@ const Root = () => (
 		<Switch>
 			<Route exact path="/game-gift" component= {GameGift} ></Route>
 			<Route exact path="/my-gift" component= {MyGift} />
+			<Redirect from="/" to="/game-gift" />
 		</Switch>
 	</Home>
 );
