@@ -11,9 +11,8 @@ class GameGift extends Component {
     this.state = {
       category: null, // 分类
       giftList: null, // 礼包列表
-      curCategory: ''
+      selectTab: '' // tab所选类
     }
-    this.handleSelectKind = this.handleSelectKind.bind(this)
   }
   componentWillMount() {
     getShopList().then(res => {
@@ -62,12 +61,12 @@ class GameGift extends Component {
   componentDidMount() {
     console.log('componentDidMount', this.props)
   }
-  handleSelectKind(e) {
-    console.log(e)
-  }
   // 选择菜单
   handleSelectTab(e) {
-    console.log(e)
+    const selectTab = e.currentTarget.getAttribute('data-id')
+    this.setState({
+      selectTab
+    })
   }
   // 序列化gifylist
   initGiftList(list) {
@@ -85,8 +84,8 @@ class GameGift extends Component {
     if (!this.state.category) return null
     return (
       <div className="gamegift">
-        <GameKinds handleSelectKind={this.handleSelectKind} list={this.state.category} />
-        <GiftPanel list={this.state.giftList}></GiftPanel>
+        <GameKinds handleSelectTab={this.handleSelectTab.bind(this)} list={this.state.category} />
+        <GiftPanel list={this.state.giftList} selectTab={this.state.selectTab}></GiftPanel>
       </div>
     )
   }

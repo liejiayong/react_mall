@@ -14,6 +14,14 @@ class GiftPanel extends Component {
     const a = $('.giftpanel')
     console.log('aaaaaaaaaaaaaaaaaaaa', a)
   }
+  componentDidUpdate() {
+    console.log(this.props.selectTab)
+    const selectTab = this.props.selectTab
+    if (selectTab) {
+      let anchorElement = document.querySelector(`.${selectTab}`);
+      if(anchorElement) { anchorElement.scrollIntoView({block: 'start', behavior: 'smooth'}); }
+    }
+  }
   render() {
     const { list } = this.props
     if (!list.length) return null
@@ -21,7 +29,7 @@ class GiftPanel extends Component {
       <>
         {list.map(v => {
           return (
-            <div className="giftpanel" key={v.id}>
+            <div className={`giftpanel category-${v.id}`} key={v.id}>
               <PanelTitle name={v.name} />
               <PanelBody list={v.list}></PanelBody>
             </div>
