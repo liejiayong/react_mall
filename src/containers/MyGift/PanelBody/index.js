@@ -29,23 +29,26 @@ class PanelBody extends Component {
   }
   render() {
     const { list } = this.props
-    if (!list.length) return null
+    if (!list) return null
     return (
       <>
         {list.map(v => {
-          const { id, type, ext1, logtime, name, img, start, end } = v
+          const { id, type, ext1, logtime, name, img, start, end, category_name } = v
           return (
             <div className="mypanelbody" key={id}>
               <img src={img} alt="" className="avatar" />
               <div className="content">
-                <div className="title">{name}</div>
+                <div className="title">{`${category_name}(${name})`}</div>
+                <div className="code">
+                  兑换码：{ext1}
+                </div>
                 <div className="period">
                   有效期：
                   {start}-{end}
                 </div>
               </div>
               <a data-id={id} data-clipboard-text={ext1} href="javascript:;" className="btn-recharge">
-                负责兑换码
+                复制兑换码
               </a>
             </div>
           )

@@ -16,9 +16,9 @@ import Root from '@src/router/index';
 
 ReactDOM.render(
 	<Provider store={store}>
-		<BrowserRouter>
+		<HashRouter>
 			<Root />
-		</BrowserRouter>
+		</HashRouter>
 	</Provider>, 
 	document.getElementById('app')
 );

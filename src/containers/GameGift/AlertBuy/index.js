@@ -24,27 +24,39 @@ const alert = ({ id, name, integral }) => {
         onPress: () => {
           console.log('确认购买', id)
           buyShop(id).then(res => {
-            var { code, list, msg } = res.data
-            // var code = 0
+            var { code, info, msg } = res.data
+            // code = 0
             switch (code) {
               case 0:
                 console.log('suc')
-                var { start, end } = list
-                var buyCody = list.code
-
+                
                 // const buyCody = 'sssssssssss'
                 // const start = '2018-01-01'
                 // const end = '2018-01-01'
-
+                // const timer = setTimeout(() => {
+                //     Toast.success('sssss', .5)
+                //     AlertSuc({
+                //         code: 'ssssa',
+                //         period: 'ssssxxxx'
+                //       })
+                //       clearTimeout(timer)
+                //     }, 100);
+                    
+                var { start, end } = info
+                var buyCody = info.code
                 const param = {
                   code: buyCody,
                   period: `有效期：${start}-${end}`
                 }
-                AlertSuc(param)
+                const timer = setTimeout(() => {
+                  Toast.success(mgs, .5)
+                  AlertSuc(param)
+                  clearTimeout(timer)
+                }, 100);
                 break
               case 1:
                 console.log('fail')
-                Toast.fail(msg, 2)
+                Toast.fail(msg, 1)
                 break
               case 2:
                 Toast.fail(msg, 1)

@@ -11,13 +11,13 @@
   -ms-flex-pack: justify;
   justify-content: space-between;
   justify-items: center;
-  padding: .14rem .4rem;
+  padding: 0.14rem 0.4rem;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   background-color: #fff;
   &::before {
-    @width: .4rem;
+    @width: 0.4rem;
     content: '';
     display: block;
     position: absolute;
@@ -47,51 +47,54 @@
     display: flex;
     -webkit-box-align: center;
     -webkit-align-items: center;
-       -moz-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
     -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap;
-    padding: 0 .3rem;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 0 0.3rem;
     -webkit-box-flex: 1;
     -webkit-flex: 1;
     -moz-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
     -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     overflow: hidden;
-    .title{
+    .title {
       width: 100%;
-      font-size: .3rem;
+      font-size: 0.3rem;
       font-weight: bold;
-      color: #1A1A1A;
+      color: #1a1a1a;
     }
-    .period{
+    .code {
+      font-size: 0.2rem;
+    }
+    .period {
       width: 100%;
-      font-size: 10px;
+      font-size: 0.1rem;
       color: #999999;
     }
   }
   .btn-recharge {
-    @height: .54rem;
+    @height: 0.54rem;
     position: absolute;
     top: 50%;
-    right: .4rem;
+    right: 0.4rem;
     -webkit-transform: translateY(-50%);
-       -moz-transform: translateY(-50%);
-        -ms-transform: translateY(-50%);
-         -o-transform: translateY(-50%);
-            transform: translateY(-50%);
-    padding: 0 .2rem;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    padding: 0 0.2rem;
     height: @height;
     line-height: @height;
     text-align: center;
     -moz-border-radius: @height;
     border-radius: @height;
-    font-size: .24rem;
+    font-size: 0.24rem;
     color: #333;
     background-color: #ffd100;
     cursor: pointer;
@@ -101,10 +104,10 @@
 .am-toast > span {
   max-width: 80%;
 }
-.am-toast-notice-content .am-toast-text{
+.am-toast-notice-content .am-toast-text {
   min-width: 115px;
   -moz-border-radius: 36px;
-       border-radius: 36px;
+  border-radius: 36px;
   color: #fff;
   background-color: rgba(58, 58, 58, 0.9);
   line-height: 1.5;

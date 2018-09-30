@@ -6,7 +6,14 @@ function isMobile() {
   return result.length !== 0
 }
 
+function getURLVar(search, a) {
+  var b = new RegExp("(^|&)" + a + "=([^&]*)(&|$)", "i"),
+    c = search.substr(1).match(b);
+  return null != c ? unescape(c[2]) : null
+}
+
 
 export default {
-	isMobile
+  isMobile,
+  getURLVar
 };

@@ -10,18 +10,18 @@ class PanelBody extends Component {
   }
   render() {
     const { list } = this.props
-    if (!list.length) return null
+    if (!list) return null
     return (
       <>
         {list.map(v => {
-          const { id, type, ext1, logtime, name, img, start, end } = v
+          const { id, type, ext1, logtime, name, img, start, end, category_name } = v
           return (
             <div className="mypanelbodylose" key={id}>
               <div className="avatar" >
                 <img src={img} alt=""/>
               </div>
               <div className="content">
-                <div className="title">{name}</div>
+                <div className="title">{`${category_name}(${name})`}</div>
                 <div className="period">
                   有效期：
                   {start}-{end}

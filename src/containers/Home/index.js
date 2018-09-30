@@ -14,10 +14,9 @@ class Home extends Component {
     this.handleSelectTab = this.handleSelectTab.bind(this)
   }
   componentWillMount() {
+    console.log('=== home ===')
   }
   componentDidMount() {
-    console.log('componentDidMount')
-    console.log(this.props)
   }
   handleClick() {
     //这里请求数据

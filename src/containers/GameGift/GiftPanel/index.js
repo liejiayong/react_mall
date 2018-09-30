@@ -11,8 +11,6 @@ class GiftPanel extends Component {
     console.log('=== GiftPanel ===')
   }
   componentDidMount() {
-    const a = $('.giftpanel')
-    console.log('aaaaaaaaaaaaaaaaaaaa', a)
   }
   componentDidUpdate() {
     console.log(this.props.selectTab)

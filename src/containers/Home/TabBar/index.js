@@ -14,12 +14,20 @@ class IntegralTabBar extends Component {
     this.handleSelectTab = this.handleSelectTab.bind(this)
   }
   componentDidMount() {
-    const pathname = this.getParam('pathname')
-    const selectedTab = pathname.match(/\w+\-\w+/)[0]
+    console.log('=== TarBar ===')
+    const pathname = this.getParam()
+    var selectedTab
+    tabConfig.forEach(v => {
+      const par = new RegExp(v, 'g')
+      if (par.test(pathname)) {
+        // console.log(v)
+        selectedTab = v
+      }
+    })
     this.setState({selectedTab})
   }
-  getParam(key) {
-    return window.location[key]
+  getParam() {
+    return window.location.href
   }
   handleSelectTab(e) {
     const type = e.target.getAttribute('data-type')
@@ -35,7 +43,7 @@ class IntegralTabBar extends Component {
       <div className="integraltabbar">
         <div className="tabbar">
           <Link
-            to="game-gift"
+            to="/game-gift"
             onClick={this.handleSelectTab}
             data-type={this.state.tabConfig[0]}
             className={`tabitem ${

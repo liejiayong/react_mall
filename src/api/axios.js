@@ -1,14 +1,13 @@
 import axios from 'axios';
+import baseURL from './config';
 //history/browserHistory需要服务器端做配置，路径是真实的URL，是官方推荐首选。
 import createHashHistory from 'history/createHashHistory'
 const qs = require('qs');
 const history = createHashHistory();
 const CancelToken = axios.CancelToken;
 let cancel;
-//console.log(process.env.NODE_ENV);
 
-// let baseURL = 'http://hd.tanwan.com/api/twapp/';
-let baseURL = '/twapi';
+// console.log('axios', process.env.NODE_ENV);
 
 axios.defaults.timeout = 10000
 axios.defaults.baseURL = baseURL
@@ -18,13 +17,13 @@ axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
 // axios.defaults.headers.post['Cache-Control'] = 'no-cache'
 axios.defaults.withCredentials = true //配置允许跨域携带cookie
 //responseType: "json",
-axios.defaults.transformRequest = [function (data) {
-    let newData = ''
-    for (let k in data) {
-        newData += encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) + '&'
-    }
-    return newData
-}]
+// axios.defaults.transformRequest = [function (data) {
+//     let newData = ''
+//     for (let k in data) {
+//         newData += encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) + '&'
+//     }
+//     return newData
+// }]
 axios.interceptors.request.use(config => {
     // console.log( '加载中。。。');
     // console.log(history)
@@ -39,7 +38,7 @@ axios.interceptors.response.use(response =>{
     if (response.data.code == 2) {
         pop_lr.login()
     }
-    console.log('加载结束', response)
+    // console.log('加载结束', response)
     //history.push('/user')
 	return response
 }, err => {
