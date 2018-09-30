@@ -23,6 +23,7 @@ module.exports = merge(webpackBaseConfig, {
     // 生产模式配置
     mode: 'production',
     output: {
+        //publicPath: 'http://ads.tanwan.com/dist/',
         filename: 'js/[name].[chunkhash:7].js', //development下HotModuleReplacement下文件名无法使用hash, 所以将filename与chunkFilename配置从base中拆分到dev与prod中
         chunkFilename: 'js/[name].[chunkhash:7].js'
     },
