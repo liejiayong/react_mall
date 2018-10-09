@@ -4,7 +4,9 @@ import AlertSuc from '../AlertSuc/index'
 import AlertFail from '../AlertFail'
 import { buyShop } from '@src/api/index'
 import './styl.less'
+import Utils from '@src/utils/index'
 
+const changeCharter = Utils.changeCharter
 const Alert = Modal.alert
 
 const alert = ({ id, name, integral }) => {
@@ -30,14 +32,15 @@ const alert = ({ id, name, integral }) => {
               case 0:
                 console.log('suc')
                 
+                // test
                 // const buyCody = 'sssssssssss'
-                // const start = '2018-01-01'
-                // const end = '2018-01-01'
+                // const start = changeCharter('2018-01-01', '-', '.')
+                // const end = changeCharter('2018-01-01', '-', '.')
+            //     Toast.success('sssss', 1)
                 // const timer = setTimeout(() => {
-                //     Toast.success('sssss', .5)
                 //     AlertSuc({
                 //         code: 'ssssa',
-                //         period: 'ssssxxxx'
+                //         period: `有效期：${start}-${end}`
                 //       })
                 //       clearTimeout(timer)
                 //     }, 100);
@@ -46,10 +49,10 @@ const alert = ({ id, name, integral }) => {
                 var buyCody = info.code
                 const param = {
                   code: buyCody,
-                  period: `有效期：${start}-${end}`
+                  period: `有效期：${changeCharter(start, '-', '.')}-${changeCharter(end, '-', '.')}`
                 }
+                Toast.success(msg, 1)
                 const timer = setTimeout(() => {
-                  Toast.success(mgs, .5)
                   AlertSuc(param)
                   clearTimeout(timer)
                 }, 100);
@@ -60,13 +63,13 @@ const alert = ({ id, name, integral }) => {
                 break
               case 2:
                 Toast.fail(msg, 1)
-                // pop_lr.login()
+                pop_lr.login()
                 break
             }
           })
         }
       },
-      { text: '取消', onPress: () => console.log('取消购买') }
+      { text: '取消', onPress: () => console.log('取消购买')}
     ]
   )
 }

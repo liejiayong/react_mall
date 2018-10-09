@@ -13,7 +13,7 @@ class GameKinds extends Component {
   render() {
     // if (this.props.list.length) return null
     return (
-      <Flex justify="around" className="gamekinds">
+      <Flex justify="around" wrap="wrap" className="gamekinds">
         {this.props.list.map(v => {
           return <GameKind handleSelectTab={this.props.handleSelectTab} data-kind={v} value={v} key={v.id} />
         })}

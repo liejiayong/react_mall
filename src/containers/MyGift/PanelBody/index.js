@@ -39,9 +39,9 @@ class PanelBody extends Component {
               <img src={img} alt="" className="avatar" />
               <div className="content">
                 <div className="title">{`${category_name}(${name})`}</div>
-                <div className="code">
+                {/* <div className="code">
                   兑换码：{ext1}
-                </div>
+                </div> */}
                 <div className="period">
                   有效期：
                   {start}-{end}

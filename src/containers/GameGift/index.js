@@ -2,11 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import GameKinds from './GameKinds/index'
 import GiftPanel from './GiftPanel/index'
-import { getShopList, buyShop } from '@src/api/index'
-import utils from '@src/utils/index'
+import { getShopList } from '@src/api/index'
+import { setItem } from '@src/utils/index'
+import Utils from '@src/utils/index'
 import './styl.less'
 
-const getURLVar = utils.getURLVar
+const getURLVar = Utils.getURLVar
+const changeCharter = Utils.changeCharter
+
 class GameGift extends Component {
   constructor(props) {
     super(props)
@@ -20,6 +23,9 @@ class GameGift extends Component {
     console.log('=== GameGift ===')
     const search = this.props.location.search
     let phpsessid = getURLVar(search, 'phpsessid')
+    console.log('id', this.props, search, phpsessid)
+    setItem('PHPSESSID', phpsessid)
+    setItem('phpsessid', phpsessid)
     phpsessid = phpsessid ? phpsessid : ''
     getShopList(phpsessid).then(res => {
       let { category, list } = res.data
@@ -81,6 +87,12 @@ class GameGift extends Component {
       if (v.list.length !== 0) {
         v.list.forEach(c => {
           c['game'] = name
+          if (c.start) {
+            c.start = changeCharter(c.start, '-', '.')
+          }
+          if (c.end) {
+            c.end = changeCharter(c.end, '-', '.')
+          }
         })
       }
     })

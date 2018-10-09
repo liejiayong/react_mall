@@ -3,8 +3,10 @@ import { connect } from 'react-redux'
 import { Tabs } from 'antd-mobile'
 import PanelBody from './PanelBody/index'
 import PanelBodylose from './PanelBodylose/index'
-import { getMyList } from '../../api/index'
+import { getMyList } from '@src/api/index'
+import Utils from '@src/utils/index'
 import './styl.less'
+const changeCharter = Utils.changeCharter
 
 class MyGift extends Component {
   constructor(props) {
@@ -52,11 +54,14 @@ class MyGift extends Component {
       // ]
     }
   }
+
   componentWillMount() {
     console.log('=== MyGift ===')
     getMyList().then(res => {
       const { code, msg, list, expired } = res.data
       if (code === 0) {
+        this.normalizeGift(list)
+        this.normalizeGift(expired)
         this.setState({
           list: list,
           expired: expired
@@ -65,7 +70,26 @@ class MyGift extends Component {
     })
   }
   componentDidMount() {
+    // // test
+    // this.normalizeGift(this.state.list)
+    // this.normalizeGift(this.state.expired)
+    // this.setState({
+    //   list: this.state.list,
+    //   expired: this.state.expired
+    // })
   }
+    
+  normalizeGift(list) {
+    list.forEach(v => {
+      if (v.start) {
+        v.start = changeCharter(v.start, '-', '.')
+      }
+      if (v.end) {
+        v.end = changeCharter(v.end, '-', '.')
+      }
+    })
+  }
+
   // 选择菜单
   handleSelectTab(e) {
     console.log(e)
