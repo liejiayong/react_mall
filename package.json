@@ -4,13 +4,12 @@
   "description": "integral mall",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --mode=development --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress  --color --config=build/webpack.prod.js",
     "server": "cross-env NODE_ENV=dev webpack-dev-server --color --config ./build/webpack.dev.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/275957304/react_mall.git"
+    "url": "git@https://github.com/275957304/react_mall.git"
   },
   "keywords": [
     "react",
