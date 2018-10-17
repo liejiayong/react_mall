@@ -7,27 +7,40 @@ const history = createHashHistory();
 const CancelToken = axios.CancelToken;
 let cancel;
 
-// console.log('axios', process.env.NODE_ENV);
-
-axios.defaults.timeout = 10000
-axios.defaults.baseURL = baseURL
-axios.defaults.headers.post['Content-Type'] = 'application/json'
+//process.env.NODE_ENV
+//const baseURL = 'http://hd.tanwan.com/api/twapp/';
+const baseURL = '/twapi';
+axios.defaults.timeout = 10000;
+axios.defaults.baseURL = baseURL;
+//axios.defaults.headers.common['Authorization'] = 'AUTH_TOKEN';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
+axios.defaults.headers.post['Content-Type'] = 'application/json'
+//axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
 // axios.defaults.headers.post['Cache-Control'] = 'no-cache'
-axios.defaults.withCredentials = true //配置允许跨域携带cookie
-//responseType: "json",
-// axios.defaults.transformRequest = [function (data) {
-//     let newData = ''
-//     for (let k in data) {
-//         newData += encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) + '&'
-//     }
-//     return newData
-// }]
+//表示跨域请求时是否需要使用凭证,配置允许跨域携带cookie 后端不能配制Access-Control-Allow-Origin:*
+axios.defaults.withCredentials = true 
+
+
+
+// 对 data 进行任意转换处理
+axios.defaults.transformRequest = [function (data) {
+    let newData = ''
+    for (let k in data) {
+        newData += encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) + '&'
+    }
+    return newData
+}]
+
+// `transformResponse` 在传递给 then/catch 前，允许修改响应数据  
+axios.defaults.transformResponse = [function (data) {
+    // 对 data 进行任意转换处理
+    return data;
+}]
+
 axios.interceptors.request.use(config => {
-    // console.log( '加载中。。。');
-    // console.log(history)
-    // console.log(config)
+    console.log( '加载中。。。');
+    //console.log(history)
+    //console.log(config)
 	return config
 }, err => {
     // console.log('加载超时')
@@ -35,17 +48,15 @@ axios.interceptors.request.use(config => {
 });
 
 axios.interceptors.response.use(response =>{
-    if (response.data.code == 2) {
-        pop_lr.login()
-    }
-    // console.log('加载结束', response)
+    //console.log('加载结束')
+    //console.log(response)
     //history.push('/user')
 	return response
 }, err => {
 	// if (err.response) {
 	// 	console.log(err.response);
     // }
-    console.log('网络不给力呀！请稍候再试', err)
+    //console.log('网络不给力呀！请稍候再试')
 	return Promise.reject(err.response)
 });
 
@@ -69,10 +80,10 @@ export const request = (obj) =>{
             cancelToken: new CancelToken(c => {
                 cancel = c
             })
-        }).then(res => {
-            resolve(res)
+        }).then(res => {            
+            resolve(res.data)
         })
-        .catch(err => {
+        .catch(err => {            
             reject(err)
         });
     })
