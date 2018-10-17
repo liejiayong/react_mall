@@ -11,7 +11,7 @@ class GameKinds extends Component {
   }
   componentDidMount() {}
   render() {
-    // if (this.props.list.length) return null
+    if (!this.props.list.length) return null
     return (
       <Flex justify="around" wrap="wrap" className="gamekinds">
         {this.props.list.map(v => {

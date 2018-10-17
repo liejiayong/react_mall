@@ -23,7 +23,7 @@ class GameGift extends Component {
     console.log('=== GameGift ===')
     const search = this.props.location.search
     let phpsessid = getURLVar(search, 'phpsessid')
-    console.log('id', this.props, search, phpsessid)
+    // console.log('id', this.props, search, phpsessid)
     setItem('PHPSESSID', phpsessid)
     setItem('phpsessid', phpsessid)
     phpsessid = phpsessid ? phpsessid : ''
