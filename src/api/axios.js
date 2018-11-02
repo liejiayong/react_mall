@@ -1,5 +1,5 @@
 import axios from 'axios';
-import baseURL from './config';
+// import baseURL from './config';
 //history/browserHistory需要服务器端做配置，路径是真实的URL，是官方推荐首选。
 import createHashHistory from 'history/createHashHistory'
 const qs = require('qs');
@@ -8,11 +8,11 @@ const CancelToken = axios.CancelToken;
 let cancel;
 
 // console.log('axios', process.env.NODE_ENV);
-
+const baseURL = '/twapi'
 axios.defaults.timeout = 10000
 axios.defaults.baseURL = baseURL
-axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
 // axios.defaults.headers.post['Cache-Control'] = 'no-cache'
 axios.defaults.withCredentials = true //配置允许跨域携带cookie
