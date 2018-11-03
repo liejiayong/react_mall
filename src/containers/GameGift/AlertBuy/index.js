@@ -26,7 +26,8 @@ const alert = ({ id, name, integral }) => {
         onPress: () => {
           console.log('确认购买', id)
           buyShop(id).then(res => {
-            var { code, info, msg } = res.data
+            const data = typeof res === 'string' ? JSON.parse(res) : res
+            var { code, info, msg } = data
             // code = 0
             switch (code) {
               case 0:

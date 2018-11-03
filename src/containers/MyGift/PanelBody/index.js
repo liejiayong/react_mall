@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import ClipboardJS from 'clipboard'
-import  { Toast } from 'antd-mobile'
+import { Toast, Modal } from 'antd-mobile'
 import './styl.less'
 
+const alert = Modal.alert
 class PanelBody extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      code: '', // 激活码
+      isCopyFailed: false // 复制错误标识
+    }
+    this.handleRecharge = this.handleRecharge.bind(this)
   }
   componentWillMount() {
     console.log('=== PanelBody ===')
@@ -15,16 +21,41 @@ class PanelBody extends Component {
   }
   initialClipboard() {
     const clipboard = new ClipboardJS('.btn-recharge')
-    clipboard.on('success', function() {
-      Toast.info((
+    clipboard.on('success', () => {
+      Toast.info(
         <div className="giftcopy">
           <p>复制成功!</p>
           <p>快到游戏中心进行兑换吧！</p>
-        </div>
-      ), 2)
+        </div>,
+        2
+      )
     })
     clipboard.on('error', function() {
-      Toast.fail('复制失败！', 2)
+      Toast.fail('该机型不支持点击复制，请长按复制！', 1)
+      this.setState(
+        {
+          isCopyFailed: true
+        },
+        () => {
+          const timer = setTimeout(() => {
+            alert('请长按复制兑换码！', <p>{this.state.code}</p>, [
+              {
+                text: '关闭',
+                onPress: () => {
+                  this.setState({ isCopyFailed: false })
+                }
+              }
+            ])
+            clearTimeout(timer)
+          }, 100)
+        }
+      )
+    })
+  }
+  handleRecharge(e) {
+    const code = e.target.getAttribute('data-clipboard-text')
+    this.setState({
+      code
     })
   }
   render() {
@@ -33,7 +64,17 @@ class PanelBody extends Component {
     return (
       <>
         {list.map(v => {
-          const { id, type, ext1, logtime, name, img, start, end, category_name } = v
+          const {
+            id,
+            type,
+            ext1,
+            logtime,
+            name,
+            img,
+            start,
+            end,
+            category_name
+          } = v
           return (
             <div className="mypanelbody" key={id}>
               <img src={img} alt="" className="avatar" />
@@ -47,7 +88,13 @@ class PanelBody extends Component {
                   {start}-{end}
                 </div>
               </div>
-              <a data-id={id} data-clipboard-text={ext1} href="javascript:;" className="btn-recharge">
+              <a
+                data-id={id}
+                data-clipboard-text={ext1}
+                href="javascript:;"
+                onClick={this.handleRecharge}
+                className="btn-recharge"
+              >
                 复制兑换码
               </a>
             </div>

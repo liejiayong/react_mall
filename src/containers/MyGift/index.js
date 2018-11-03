@@ -58,7 +58,8 @@ class MyGift extends Component {
   componentWillMount() {
     console.log('=== MyGift ===')
     getMyList().then(res => {
-      const { code, msg, list, expired } = res.data
+      const data = typeof res === 'string' ? JSON.parse(res) : res
+      const { code, msg, list, expired } = data
       if (code === 0) {
         this.normalizeGift(list)
         this.normalizeGift(expired)

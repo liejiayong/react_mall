@@ -24,12 +24,12 @@ class GameGift extends Component {
     const search = this.props.location.search
     let phpsessid = getURLVar(search, 'phpsessid')
     // console.log('id', this.props, search, phpsessid)
-    setItem('PHPSESSID', phpsessid)
+    // setItem('PHPSESSID', phpsessid)
     setItem('phpsessid', phpsessid)
     phpsessid = phpsessid ? phpsessid : ''
     getShopList(phpsessid).then(res => {
-      let { category, list } = res.data
-
+      const data = typeof res === 'string' ? JSON.parse(res) : res
+      let { category, list } = data
       // // 测试
       // category = [
       //   {id: "2", name: "蓝月手游2", img: "http://upload.tanwan.com/upload/201809/5ba367ad002bc.png"},
