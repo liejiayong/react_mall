@@ -5,6 +5,7 @@ import AlertFail from '../AlertFail'
 import { buyShop } from '@src/api/index'
 import './styl.less'
 import Utils from '@src/utils/index'
+import { type } from 'os';
 
 const changeCharter = Utils.changeCharter
 const Alert = Modal.alert
@@ -24,7 +25,7 @@ const alert = ({ id, name, integral }) => {
       {
         text: '确认',
         onPress: () => {
-          console.log('确认购买', id)
+          console.log('确认购买', id, typeof id)
           buyShop(id).then(res => {
             const data = typeof res === 'string' ? JSON.parse(res) : res
             var { code, info, msg } = data

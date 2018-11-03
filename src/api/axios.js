@@ -13,8 +13,8 @@ let cancel;
 axios.defaults.timeout = 10000;
 axios.defaults.baseURL = baseURL;
 //axios.defaults.headers.common['Authorization'] = 'AUTH_TOKEN';
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.headers.post['Content-Type'] = 'application/json'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 //axios.defaults.headers.post['X-Requested-With'] = 'XMLHttpRequest'
 // axios.defaults.headers.post['Cache-Control'] = 'no-cache'
 //表示跨域请求时是否需要使用凭证,配置允许跨域携带cookie 后端不能配制Access-Control-Allow-Origin:*

@@ -14,10 +14,10 @@ class PanelBody extends Component {
   }
   handleBuyShop(e) {
     const tar = e.target
-    const id = tar.getAttribute('data-id')
+    const id = +tar.getAttribute('data-id')
     const integral = tar.getAttribute('data-integral')
     const name = tar.getAttribute('data-name')
-
+    // console.log(id, name, integral)
     alert({ id, name, integral})
   }
   render() {
